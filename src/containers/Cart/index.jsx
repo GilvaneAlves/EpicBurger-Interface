@@ -1,5 +1,6 @@
 
 import Logo from '../../assets/logo.png'
+import { CartItems, CartResume } from '../../components';
 import { Container, Banner, Title, Content } from "./styles";
 
 export function Cart() {
@@ -10,8 +11,8 @@ export function Cart() {
             </Banner>
             <Title>Checout - Pedido</Title>
             <Content>
-                {/*<CartItens /> */}
-                {/* <CaRTResume /> */}
+                <CartItems />
+                <CartResume />
             </Content>
 
         </Container>

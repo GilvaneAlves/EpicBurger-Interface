@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Texture from '../../assets/texture.png';
 import Background from "../../assets/background.png";
 
-export const Container = styled.div `
+export const Container = styled.div`
 width: 100%;
 background-color: #f0f0f0;
 background: linear-gradient(
@@ -15,7 +15,7 @@ min-height: 100vh;
 
 `;
 
-export const Banner = styled.div `
+export const Banner = styled.div`
 background-image: url(${Texture});
 background-size: cover;
 background-position: center;
@@ -29,7 +29,7 @@ img {
 }
 `;
 
-export const Title = styled.div `
+export const Title = styled.div`
 font-size: 32px;
 font-weight: 800;
 padding-bottom: 12px;
@@ -49,9 +49,9 @@ position: relative;
 }
 `;
 
-export const Content = styled.div `
+export const Content = styled.div`
 display: grid;
-grid-template-columns: 1fr 20%;
+grid-template-columns: 1fr 28%;
 gap: 40px;
 width: 100%;
 max-width: 1280px;
