@@ -35,21 +35,15 @@ export function Orders() {
         return {
             name: order.user.name,
             orderId: order._id,
-            date: order.createDatate,
+            date: order.createdAt,
             status: order.status,
             products: order.products,
-
         };
     }
     useEffect(() => {
         const newRows = orders.map(order => createData(order));
         setRows(newRows);
     }, [orders]);
-
-
-
-
-
 
 
     return (
@@ -66,7 +60,12 @@ export function Orders() {
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
-                        <Row key={row._id} row={row} />
+                        <Row
+                            key={row.orderId}
+                            row={row}
+                            orders={orders}
+                            setOrders={setOrders}
+                        />
                     ))}
                 </TableBody>
             </Table>
