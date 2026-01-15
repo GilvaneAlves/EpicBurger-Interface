@@ -15,7 +15,7 @@ import { formatDate } from '../../../utils/formatDate';
 import { ProductImage, SelectStatus } from './styles';
 import { OrderStatusOptions } from './orderStatus';
 import { api } from '../../../services/api';
-
+import { selectStatusStyles } from './selectStyles';
 export function Row({ row, setOrders, orders }) {
 
     const [open, setOpen] = useState(false);
@@ -53,8 +53,16 @@ export function Row({ row, setOrders, orders }) {
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{formatDate(row.date)}</TableCell>
                 <TableCell>
-                    <SelectStatus options={OrderStatusOptions.filter((status) => status.id !== 0)} placeholder='Status'
-                        defaultValue={OrderStatusOptions.find((status) => status.value === row.status || null,)} onChange={status => newStatusOrder(row.orderId, status.value)} isLoading={loading} />
+                    <SelectStatus
+                        options={OrderStatusOptions.filter(status => status.id !== 0)}
+                        placeholder="Status"
+                        defaultValue={OrderStatusOptions.find(status => status.value === row.status || null)}
+                        onChange={status => newStatusOrder(row.orderId, status.value)}
+                        isLoading={loading}
+                        menuPortalTarget={document.body}
+                        styles={selectStatusStyles}
+                    />
+
                 </TableCell>
             </TableRow>
             <TableRow>
