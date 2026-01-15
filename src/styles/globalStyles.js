@@ -1,24 +1,26 @@
 import { createGlobalStyle } from "styled-components";
-import 'react-toastify/dist/ReactToastify.css';
 
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: none;
-    font-family: "Poppins", sans-serif;
-  }
-
-  button, a {
-    cursor: pointer;
   }
 
   body {
-    font-family: "Poppins", sans-serif;
-    background-color: #fff;
-    color: #333;
+    background: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.white};
+    font-family: ${({ theme }) => theme.poppinsFont};
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button {
+    font-family: ${({ theme }) => theme.poppinsFont};
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 `;
-
 export default GlobalStyle;

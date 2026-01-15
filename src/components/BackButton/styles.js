@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const ButtonBack = styled.button`
-    background: #9758a6;
-    color: #fff;
+    background: ${(props) => props.theme.purple};
+    color: ${(props) => props.white};
     border: none;
     padding: 10px 25px;
     border-radius: 5px;
@@ -13,6 +13,6 @@ export const ButtonBack = styled.button`
     
 
     &:hover {
-        background: #6f357c;
+        background: ${(props) => props.theme.secondDarkPurple};
     }
 `;

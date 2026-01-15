@@ -1,45 +1,33 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { Cart, Home, Login, Menu, Register } from '../containers';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
+import { Route, Routes } from 'react-router-dom';
+import { Cart, Checkout, CompletePayment, EditProduct, Home, Login, Menu, NewProduct, Orders, Products, Register } from '../containers';
+import { UserLayout } from '../layouts/UserLayout';
+import { AdminLayout } from '../layouts/AdminLayout';
 
 
-export const router = createBrowserRouter([
-    {
-        path: '/',
-        element: (
-            <>
-                <Header />
-                <Home />
-                <Footer />
-            </>
-        ),
-    },
-    {
-        path: '/login',
-        element: <Login />,
-    },
-    {
-        path: '/cadastro',
-        element: <Register />,
-    },
-    {
-        path: '/cardapio',
-        element: (
-            <>
-                <Header />
-                <Menu />
-            </>
-        ),
-    },
+export function Router() {
+    return (
+        <Routes>
+            {/* Layout do usuário */}
+            <Route path="/" element={<UserLayout />}>
+                <Route index element={<Home />} />
+                <Route path="cardapio" element={<Menu />} />
+                <Route path="carrinho" element={<Cart />} />
+                <Route path="checkout" element={<Checkout />} />
+                <Route path="complete-payment" element={<CompletePayment />} />
+            </Route>
 
-    {
-        path: '/carrinho',
-        element: (
-            <>
-                <Header />
-                <Cart />
-            </>
-        ),
-    },
-]);
+            {/* Layout do Admin */}
+            <Route path="/admin/*" element={<AdminLayout />}>
+                <Route path="pedidos" element={<Orders />} />
+                <Route path="novo-produto" element={<NewProduct />} />
+                <Route path="editar-produto" element={<EditProduct />} />
+                <Route path="produtos" element={<Products />} />
+
+            </Route>
+
+            {/* Rotas de autenticação */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Register />} />
+        </Routes>
+    );
+}

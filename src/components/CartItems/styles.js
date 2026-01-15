@@ -23,7 +23,7 @@ export const QuantityControls = styled.div`
 // Botões de quantidade
 export const QuantityButton = styled.button`
   background-color: #995DCE;
-  color: #fff;
+  color: ${(props) => props.white};
   border: none;
   border-radius: 4px;
   width: 30px;
@@ -82,9 +82,9 @@ export const OrderTotalPrice = styled.th`
 export const TableTh = styled.th`
   padding: 16px;
   font-weight: bold;
-  color: #fff;
-  background-color: #484848;
-  border-bottom: 1px solid #cdcdcd;
+  color: ${(props) => props.white};
+  background-color: ${(props) => props.secondBlack};
+  border-bottom: 1px solid ${(props) => props.lightGray};
 
   ${({ small }) => small && css`width: 10%;`}
   ${({ large }) => large && css`width: 40%;`}

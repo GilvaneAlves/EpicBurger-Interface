@@ -9,7 +9,7 @@ export const Container = styled.div`
     margin-bottom: 1rem;
 
     * {
-        color: #484848;
+        color: ${(props) => props.secondBlack};
         font-weight: 500;  
     }
     .container-top {
@@ -24,8 +24,8 @@ export const Container = styled.div`
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 20px;
-            background-color: #484848;
-            color: #fff;
+            background-color: ${(props) => props.secondBlack};
+            color: ${(props) => props.white};
             width: 100%;
             padding: 15px;
             text-align: center;

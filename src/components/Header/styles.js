@@ -4,39 +4,43 @@ import { Link } from "react-router-dom";
 export const Container = styled.header`
   width: 100%;
   height: 70px;
-  background: #1f1f1f;
+  background: ${({ theme }) => theme.mainBlack};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 50px;
 `;
 
 export const Navigation = styled.nav`
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 72px;
+  height: 70px;
+
   div {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 20px;
   }
+
   hr {
     height: 24px;
-    border: 1px solid #625E5E;
+    border: 1px solid ${({ theme }) => theme.darkGray};
   }
 `;
 
 export const HeaderLink = styled(Link)`
-  color: ${(props) => (props.$isActive ? "#9758a6" : "#fff")};
-  border-bottom: ${(props) => (props.$isActive ? '1px solid #9858a6' : 'none')};
+  color: ${({ $isActive, theme }) =>
+    $isActive ? theme.purple : theme.white};
+
+  border-bottom: ${({ $isActive, theme }) =>
+    $isActive ? `1px solid ${theme.purple}` : "none"};
+
   text-decoration: none;
   font-size: 18px;
-  margin-right: 20px;
+  font-family: ${({ theme }) => theme.poppinsFont};
 
   &:hover {
-    color: #9758a6;
+    color: ${({ theme }) => theme.purple};
     opacity: 0.7;
   }
 `;
@@ -44,14 +48,15 @@ export const HeaderLink = styled(Link)`
 export const Options = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px; /* espaço entre Profile e outros elementos */
+  gap: 24px;
 `;
 
 export const Profile = styled.div`
-  color: #fff;
+  color: ${({ theme }) => theme.white};
+  font-family: ${({ theme }) => theme.poppinsFont};
 
   div {
-    display: flex;       /* ícone e nome lado a lado */
+    display: flex;
     align-items: center;
     gap: 8px;
   }
@@ -62,40 +67,34 @@ export const Profile = styled.div`
   }
 
   span {
-    font-weight: bold;
+    font-weight: 600;
   }
 
   button {
     background: transparent;
-    color: #fff;
+    color: ${({ theme }) => theme.white};
     border: none;
     cursor: pointer;
-    margin-left: 10px;
     font-size: 14px;
+    font-family: ${({ theme }) => theme.poppinsFont};
 
-     &:hover {
-    color: #9758a6;
-    opacity: 0.7;
+    &:hover {
+      color: ${({ theme }) => theme.purple};
+      opacity: 0.7;
+    }
   }
-  }
-`;
-
-export const Logout = styled.div`
-  /* se quiser estilizar um container extra para o botão de logout */
 `;
 
 export const LinkContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px; /* espaço entre ícone e link do carrinho */
+  gap: 8px;
+  text-decoration: none;
+  color: ${({ theme }) => theme.white};
+  font-family: ${({ theme }) => theme.poppinsFont};
 
-  span {
-     cursor: pointer;
-    color: #fff;
-
-     &:hover {
-    color: #9758a6;
+  &:hover {
+    color: ${({ theme }) => theme.purple};
     opacity: 0.7;
   }
-}
 `;

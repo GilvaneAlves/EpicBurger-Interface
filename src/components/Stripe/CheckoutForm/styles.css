@@ -1,0 +1,256 @@
+/* =========================
+   GLOBAL / BODY / ROOT
+========================= */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+/* =========================
+   BASE / CONTAINER
+========================= */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 24px;
+  box-sizing: border-box;
+  background: #f6f9fc;
+  width: 100%;
+}
+
+/* =========================
+   CHECKOUT FORM
+========================= */
+#payment-form {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 40px;
+  margin: 0 auto;
+  box-shadow:
+    0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
+    0px 4px 12px rgba(50, 50, 93, 0.1),
+    0px 2px 4px rgba(0, 0, 0, 0.07);
+}
+
+/* Stripe PaymentElement */
+#payment-element {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+/* Mensagem */
+#payment-message {
+  margin-top: 16px;
+  font-size: 15px;
+  text-align: center;
+  color: rgb(105, 115, 134);
+}
+
+/* =========================
+   BOTÃO
+========================= */
+#button-submit {
+  width: 100%;
+  background: #0055de;
+  color: fff;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+#button-submit:hover {
+  filter: brightness(1.08);
+}
+
+#button-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   SPINNER
+========================= */
+#spinner,
+#spinner::before,
+#spinner::after {
+  border-radius: 50%;
+}
+
+#spinner {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  position: relative;
+  text-indent: -9999px;
+  box-shadow: inset 0 0 0 2px #fff;
+}
+
+#spinner::before,
+#spinner::after {
+  content: "";
+  position: absolute;
+  background: #0055de;
+}
+
+#spinner::before {
+  width: 10px;
+  height: 20px;
+  left: -1px;
+  top: -1px;
+  border-radius: 20px 0 0 20px;
+  animation: spin 2s infinite ease 1.5s;
+}
+
+#spinner::after {
+  width: 10px;
+  height: 10px;
+  left: 9px;
+  top: -1px;
+  border-radius: 0 10px 10px 0;
+  animation: spin 2s infinite ease;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* =========================
+   COMPLETE PAYMENT
+========================= */
+#payment-status {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  box-shadow:
+    0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
+    0px 4px 12px rgba(50, 50, 93, 0.1),
+    0px 2px 4px rgba(0, 0, 0, 0.07);
+  animation: fadeIn 0.6s ease forwards;
+  margin: 0 auto;
+}
+
+/* Status Icon */
+#status-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Status Text */
+#status-text {
+  font-size: 20px;
+  color: #30313d;
+  margin-bottom: 24px;
+}
+
+/* =========================
+   DETAILS TABLE
+========================= */
+#details-table {
+  width: 100%;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+td {
+  padding: 10px 0;
+}
+
+.TableLabel {
+  font-weight: 600;
+  color: #30313d;
+}
+
+.TableContent {
+  text-align: right;
+  color: #6d6e78;
+}
+
+/* =========================
+   LINKS / BOTÕES FINAIS
+========================= */
+#view-details {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: #0055de;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#retry-button {
+  display: block;
+  width: 100%;
+  background: #0055de;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: filter 0.2s ease;
+}
+
+#retry-button:hover {
+  filter: brightness(1.08);
+}
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+@media (max-width: 768px) {
+  #payment-form,
+  #payment-status {
+    padding: 28px;
+  }
+
+  #status-text {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  #payment-form,
+  #payment-status {
+    padding: 20px;
+  }
+
+  #button-submit,
+  #retry-button {
+    font-size: 14px;
+    padding: 12px;
+  }
+}

@@ -11,7 +11,7 @@ export const TableContainer = styled.div`
 export const Root = styled.table`
   width: 100%;
   border-collapse: collapse;
-  background-color: #ffffff;
+  background-color: ${(props) => props.white}fff;
 `;
 
 export const Header = styled.thead``;
@@ -20,7 +20,7 @@ export const Body = styled.tbody``;
 
 export const Tr = styled.tr`
   &:hover td {
-    background-color: #f0f0f0;
+    background-color: ${(props) => props.secondWhite};
   }
 `;
 
@@ -28,9 +28,9 @@ export const Th = styled.th`
   padding: 16px;
   text-align: left;
   font-weight: bold;
-  color: #fff;
-  background-color: #484848;
-  border-bottom: 1px solid #cdcdcd;
+  color: ${(props) => props.white};
+  background-color: ${(props) => props.secondBlack};
+  border-bottom: 1px solid ${(props) => props.lightGray};
 
   &:first-child {
     border-top-left-radius: 20px;

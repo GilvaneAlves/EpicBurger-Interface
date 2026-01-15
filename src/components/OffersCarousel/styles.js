@@ -25,7 +25,7 @@ padding-bottom: 40px;
 
 export const Title = styled.h2`
 font-size: 32px;
-color: #61A120;
+color: ${(props) => props.gren};
 padding-bottom:12px;
 position: relative;
 text-align: center;
@@ -38,7 +38,7 @@ margin-bottom: 25px;
     bottom: 0;
     width: 56px;
     height: 4px;
-    background-color: #61A120;
+    background-color: ${(props) => props.gren};
     left: calc(50% - 28px);
 
 }

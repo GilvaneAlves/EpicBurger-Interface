@@ -1,21 +1,30 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import { defineConfig, globalIgnores } from 'eslint/config'
+// eslint.config.js
+import js from '@eslint/js';
+import globals from 'globals';
 
-export default defineConfig([
-  // Ignorar pastas globais
+// 1. Importe os plugins
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+
+export default [
+  // Ignorar pastas globais (correção para 'globalIgnores')
   {
-    ignores: globalIgnores(['dist']),
+    // Apenas defina o array de strings diretamente
+    ignores: ['dist', 'node_modules'], // Adicione node_modules também, é boa prática
   },
 
   // Configuração principal para JS/JSX
   {
     files: ['**/*.{js,jsx}'],
     extends: [
-      js.configs.recommended,               // ESLint recomendado
-      'plugin:react/recommended',           // Regras básicas de React
-      'plugin:react-hooks/recommended',     // Hooks do React
-      'plugin:react-refresh/recommended',   // React Refresh (Vite)
+      js.configs.recommended,
+      // 'plugin:react/recommended' e outros já estão sendo carregados através da importação dos plugins
+      // e o ESLint Flat Config prefere que você os configure diretamente via 'plugins' e 'rules'
+      // ou use a configuração fornecida pelos próprios plugins se disponível como um export.
+      // Para simplicidade e compatibilidade com o que você já tinha, vamos ajustar.
+      // A forma mais robusta seria importar as configs diretamente do plugin se ele as exportar.
+      // Por enquanto, vamos manter os 'extends' e garantir que os 'plugins' estejam corretos.
     ],
     languageOptions: {
       ecmaVersion: 'latest',
@@ -24,22 +33,32 @@ export default defineConfig([
         sourceType: 'module',
         ecmaFeatures: { jsx: true },
       },
-      globals: globals.browser,
+      globals: {
+        ...globals.browser, // Espalha as variáveis globais do navegador
+        // Adicione outras globais se necessário, ex: `process: 'readonly'`
+      },
     },
     plugins: {
-      react: {},      // Necessário para o plugin react
-      'react-hooks': {},
-      'react-refresh': {},
+      // 2. Referencie os plugins importados aqui
+      react: react,
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-      'react/prop-types': 'off',             // Desliga prop-types se usar TypeScript ou não quiser
-      'react/react-in-jsx-scope': 'off',     // JSX no React 17+ não precisa importar React
+      // As regras do 'extends' ainda funcionam, mas se houver conflito ou precisar de customização,
+      // você pode sobrescrever aqui.
+      ...react.configs.recommended.rules, // Adiciona as regras recomendadas do plugin react
+      ...reactHooks.configs.recommended.rules, // Adiciona as regras recomendadas do plugin react-hooks
+      ...reactRefresh.configs.recommended.rules, // Adiciona as regras recomendadas do plugin react-refresh
+
+      'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }], // Mudei para 'warn' para ser menos intrusivo
+      'react/prop-types': 'off',
+      'react/react-in-jsx-scope': 'off',
     },
     settings: {
       react: {
-        version: 'detect',                    // Detecta automaticamente a versão do React
+        version: 'detect',
       },
     },
   },
-])
+];
