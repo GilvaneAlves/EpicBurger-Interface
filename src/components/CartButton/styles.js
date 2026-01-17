@@ -1,18 +1,25 @@
 import styled from 'styled-components';
 
-
 export const ContainerButton = styled.button`
-  background-color: ${(props) => props.theme.purple};
-  width: 100%;
+  background-color: ${({ theme }) => theme.purple}; /* fundo escuro */
+  width: 52px;
   height: 52px;
   border: 0;
-  border-radius: 5px;
-  font-size: 30px;
-  color: ${(props) => props.white}fff;
+  border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: ${(props) => props.theme.secondDarkPurple};
+    background-color: ${({ theme }) => theme.secondDarkPurple};
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
   }
 `;

@@ -2,19 +2,23 @@ import { api } from '../../services/api';
 import { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Container, Title, ContainerItems, CategoryButton } from './styles';
-import { useNavigate } from 'react-router-dom';
+import {
+    Container,
+    Title,
+    ContainerItems,
+    CategoryButton
+} from './styles';
+import { Link } from 'react-router-dom';
 
 export function CategoriesCarousel() {
     const [categories, setCategories] = useState([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
         async function loadCategories() {
             const { data } = await api.get('/categories');
-
             setCategories(data);
         }
+
         loadCategories();
     }, []);
 
@@ -40,26 +44,22 @@ export function CategoriesCarousel() {
     return (
         <Container>
             <Title>Categorias</Title>
+
             <Carousel
                 responsive={responsive}
-                infinite={true}
-                partialVisible={false}
+                infinite
+                draggable={false}
+                swipeable={false}
                 itemClass="carousel-item"
             >
-                {categories.map(category => (
+                {categories.map((category) => (
                     <ContainerItems key={category.id} imageUrl={category.url}>
-                        <CategoryButton
-                            onClick={() => {
-                                navigate({
-                                    pathname: '/cardapio',
-                                    search: `?categoria=${category.id}`,
-
-                                });
-                            }}
-                        >{category.name} </CategoryButton>
+                        <CategoryButton to={`/cardapio?categoria=${category.id}`}>
+                            {category.name}
+                        </CategoryButton>
                     </ContainerItems>
                 ))}
             </Carousel>
         </Container>
-    )
+    );
 }

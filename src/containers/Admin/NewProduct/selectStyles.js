@@ -1,4 +1,4 @@
-
+// src/containers/Admin/NewProduct/selectStyles.js
 import { standardTheme } from '../../../styles/themes/standard';
 
 export const selectStatusStyles = {
@@ -8,9 +8,7 @@ export const selectStatusStyles = {
         borderRadius: 6,
         borderColor: state.isFocused ? standardTheme.purple : '#ccc',
         boxShadow: state.isFocused ? `0 0 0 1px ${standardTheme.purple}` : 'none',
-        '&:hover': {
-            borderColor: standardTheme.purple,
-        },
+        '&:hover': { borderColor: standardTheme.purple },
         backgroundColor: standardTheme.mainBlack,
         color: standardTheme.white,
         fontSize: 14,
@@ -35,25 +33,13 @@ export const selectStatusStyles = {
         padding: '8px 12px',
         fontSize: 14,
         transition: 'background-color 0.2s',
-        '&:active': {
-            backgroundColor: standardTheme.purple,
-            color: standardTheme.white,
-        },
     }),
-    singleValue: (base) => ({
-        ...base,
-        color: standardTheme.white,
-    }),
-    placeholder: (base) => ({
-        ...base,
-        color: standardTheme.lightGray,
-    }),
+    singleValue: (base) => ({ ...base, color: standardTheme.white }),
+    placeholder: (base) => ({ ...base, color: standardTheme.lightGray }),
     dropdownIndicator: (base) => ({
         ...base,
         color: standardTheme.white,
         '&:hover': { color: standardTheme.purple },
     }),
-    indicatorSeparator: () => ({
-        display: 'none',
-    }),
+    indicatorSeparator: () => ({ display: 'none' }),
 };

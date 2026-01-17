@@ -7,13 +7,13 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.black};
   padding: 24px;
   border-radius: 8px;
+  box-shadow: none;
   font-family: ${({ theme }) => theme.poppinsFont};
   color: ${({ theme }) => theme.white};
 
   @media (max-width: 768px) {
     padding: 20px;
   }
-
   @media (max-width: 480px) {
     padding: 16px;
   }
@@ -34,32 +34,8 @@ export const InputGroup = styled.div`
   flex-direction: column;
   gap: 6px;
 
-  input {
-    height: 44px;
-    padding: 0 12px;
-    border-radius: 6px;
-    border: none;
-    background: ${({ theme }) => theme.mainBlack};
-    color: ${({ theme }) => theme.white};
-    font-size: 14px;
-  }
-
-  input::placeholder {
-    color: ${({ theme }) => theme.darkGray};
-  }
-
-  input:focus {
-    outline: none;
-    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.purple};
-  }
-
   @media (max-width: 480px) {
     gap: 4px;
-
-    input {
-      height: 40px;
-      font-size: 13px;
-    }
   }
 `;
 
@@ -73,21 +49,62 @@ export const Label = styled.label`
   }
 `;
 
+export const Input = styled.input`
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: ${({ theme }) => theme.mainBlack};
+  color: ${({ theme }) => theme.white};
+  font-size: 14px;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.darkGray};
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.purple};
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 480px) {
+    height: 40px;
+    font-size: 13px;
+  }
+`;
+
 export const CheckboxGroup = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 
-  input {
+  label {
+    font-size: 14px;
+    color: ${({ theme }) => theme.white};
+    cursor: pointer;
+  }
+
+  input[type="checkbox"] {
     width: 18px;
     height: 18px;
+    accent-color: ${({ theme }) => theme.purple};
     cursor: pointer;
   }
 
   @media (max-width: 480px) {
     gap: 6px;
 
-    input {
+    label {
+      font-size: 13px;
+    }
+
+    input[type="checkbox"] {
       width: 16px;
       height: 16px;
     }
@@ -98,20 +115,24 @@ export const LabelUpload = styled.label`
   height: 140px;
   border: 2px dashed ${({ theme }) => theme.lightGray};
   border-radius: 8px;
-  background: ${({ theme }) => theme.mainBlack};
-  color: ${({ theme }) => theme.lightGray};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  color: ${({ theme }) => theme.lightGray};
+  background: ${({ theme }) => theme.mainBlack};
   cursor: pointer;
-  text-align: center;
   transition: border-color 0.2s, color 0.2s;
+  text-align: center;
 
   &:hover {
     border-color: ${({ theme }) => theme.purple};
     color: ${({ theme }) => theme.purple};
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.purple};
   }
 
   input {
@@ -133,8 +154,8 @@ export const SubmitButton = styled.button`
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  font-family: ${({ theme }) => theme.poppinsFont};
   transition: opacity 0.2s;
+  font-family: ${({ theme }) => theme.poppinsFont};
 
   &:hover {
     opacity: 0.9;
@@ -158,5 +179,32 @@ export const ErrorMessage = styled.span`
 
   @media (max-width: 480px) {
     font-size: 11px;
+  }
+`;
+
+export const EditButton = styled.button`
+  background: ${({ theme }) => theme.purple};
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: ${({ theme }) => theme.white};
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 480px) {
+    padding: 5px 10px;
+    font-size: 13px;
   }
 `;

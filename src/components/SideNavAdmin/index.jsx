@@ -2,13 +2,13 @@ import { navLinks } from "./navLinks";
 import Logo from '../../assets/logo.png';
 import { SignOutIcon } from "@phosphor-icons/react/dist/ssr";
 import { useUser } from "../../hooks/UserContext";
-import { useNavigate, useResolvedPath } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, NaviLinkContainer, NavLink, Footer } from "./styles";
 
 export function SideNavAdmin() {
     const { logout } = useUser();
     const navigate = useNavigate();
-    const { pathname } = useResolvedPath();
+    const { pathname } = useLocation();
 
     function handleLogout() {
         logout();

@@ -1,24 +1,20 @@
 export const darkTheme = {
-    purple: '#9758a6',
-    darkPurple: '#5c2669',
-    secondDarkPurple: '#6f357c',
-    orange: '#ff8c05',
+    primaryRed: '#E63946',       // novos destaques
+    accentOrange: '#FF6B35',
+    hoverPurple: '#7B61FF',
 
-    mainBlack: '#2b2b2b',
+    mainBlack: '#1F1F1F',       // fundo dark
     black: '#363636',
     secondBlack: '#484848',
 
     darkGray: '#625e5e',
     lightGray: '#cdcdcd',
 
-    red: '#ff3205',
-    darkRed: '#cf3057',
-
-    white: '#ffffff',
+    white: '#FFFFFF',
     secondWhite: '#f0f0f0',
     darkWhite: '#f4f4f4',
 
-    green: '#61a120',
+    green: '#32CD32',           // ofertas
 
     roadRageFont: '"Road Rage", sans-serif',
     poppinsFont: '"Poppins", sans-serif',
