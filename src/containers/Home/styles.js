@@ -4,10 +4,28 @@ import Background from "../../assets/background.png";
 
 export const Banner = styled.div`
   position: relative;
-  background: url(${BannerHome});
-  background-size: cover;
-  background-position: center;
   height: 480px;
+  overflow: hidden;
+
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(${BannerHome});
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease-out;
+    z-index: 1;
+  }
+
+  
+  &:hover::before {
+    transform: scale(1.05);
+  }
 
   h1 {
     font-family: ${({ theme }) => theme.roadRageFont};
@@ -16,7 +34,10 @@ export const Banner = styled.div`
     position: absolute;
     right: 20%;
     top: 10%;
+    z-index: 2;
   }
+
+  
 
   @media (max-width: 1024px) {
     height: 360px;

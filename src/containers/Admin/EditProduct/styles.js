@@ -1,20 +1,16 @@
+// src/containers/Admin/NewProduct/styles.js
 import styled from "styled-components";
+
+const get = (theme, token, fallback) => theme[token] ?? fallback;
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  background: ${({ theme }) => theme.black};
   padding: 24px;
-  border-radius: 8px;
-  box-shadow: none;
-  font-family: ${({ theme }) => theme.poppinsFont};
-  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => get(theme, "backgroundMain", "#121212")};
+  color: ${({ theme }) => get(theme, "textPrimary", "#FFFFFF")};
+  font-family: ${({ theme }) => get(theme, "bodyFont", "system-ui, sans-serif")};
 
   @media (max-width: 768px) {
-    padding: 20px;
-  }
-  @media (max-width: 480px) {
     padding: 16px;
   }
 `;
@@ -22,10 +18,16 @@ export const Container = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  width: 100%;
+  background: ${({ theme }) => get(theme, "backgroundSecondary", "#1E1E1E")};
+  border: 1px solid ${({ theme }) => get(theme, "textSecondary", "#BBBBBB")};
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  padding: 20px;
 
-  @media (max-width: 480px) {
-    gap: 16px;
+  @media (max-width: 768px) {
+    padding: 16px;
   }
 `;
 
@@ -33,49 +35,113 @@ export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
-
-  @media (max-width: 480px) {
-    gap: 4px;
-  }
 `;
 
 export const Label = styled.label`
   font-size: 14px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.white};
-
-  @media (max-width: 480px) {
-    font-size: 13px;
-  }
+  font-weight: 600;
+  font-family: ${({ theme }) => get(theme, "headingFont", "Poppins, sans-serif")};
+  color: ${({ theme }) => get(theme, "textSecondary", "#BBBBBB")};
 `;
 
 export const Input = styled.input`
   height: 44px;
   padding: 0 12px;
-  border-radius: 6px;
-  border: 1px solid transparent;
-  background: ${({ theme }) => theme.mainBlack};
-  color: ${({ theme }) => theme.white};
-  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => get(theme, "textSecondary", "#BBBBBB")};
+  background: ${({ theme }) => get(theme, "backgroundSecondary", "#1E1E1E")};
+  color: ${({ theme }) => get(theme, "textPrimary", "#FFFFFF")};
+  transition: all 0.2s ease;
 
   &::placeholder {
-    color: ${({ theme }) => theme.darkGray};
+    color: ${({ theme }) => get(theme, "textPlaceholder", "#777777")};
   }
 
-  &:focus,
-  &:focus-visible {
+  &:focus {
     outline: none;
-    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.purple};
+    border-color: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
+    box-shadow: 0 0 0 3px rgba(255,76,41,0.25);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &[type="number"]::-webkit-inner-spin-button,
+  &[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
+`;
+
+export const SubmitButton = styled.button`
+  height: 44px;
+  border: 0;
+  border-radius: 10px;
+  background: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
+  color: ${({ theme }) => get(theme, "textPrimary", "#FFFFFF")};
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+
+  &:hover {
+    background: rgba(255,76,41,0.85);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    background: rgba(255,76,41,0.7);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255,76,41,0.25);
   }
 
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
+`;
 
-  @media (max-width: 480px) {
-    height: 40px;
-    font-size: 13px;
+export const ErrorMessage = styled.span`
+  color: #EF4444;
+  font-size: 12px;
+  margin-top: 4px;
+`;
+
+export const LabelUpload = styled.label`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px dashed ${({ theme }) => get(theme, "textSecondary", "#BBBBBB")};
+  border-radius: 10px;
+  background: ${({ theme }) => get(theme, "backgroundSecondary", "#1E1E1E")};
+  color: ${({ theme }) => get(theme, "textPrimary", "#FFFFFF")};
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+
+  &:hover {
+    border-color: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 0 3px rgba(255,76,41,0.25);
+    border-color: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
+  }
+
+  input[type="file"] {
+    display: none;
   }
 `;
 
@@ -84,127 +150,16 @@ export const CheckboxGroup = styled.div`
   align-items: center;
   gap: 10px;
 
-  label {
-    font-size: 14px;
-    color: ${({ theme }) => theme.white};
-    cursor: pointer;
-  }
-
   input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: ${({ theme }) => theme.purple};
+    accent-color: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
     cursor: pointer;
   }
 
-  @media (max-width: 480px) {
-    gap: 6px;
-
-    label {
-      font-size: 13px;
-    }
-
-    input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-    }
-  }
-`;
-
-export const LabelUpload = styled.label`
-  height: 140px;
-  border: 2px dashed ${({ theme }) => theme.lightGray};
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.lightGray};
-  background: ${({ theme }) => theme.mainBlack};
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
-  text-align: center;
-
-  &:hover {
-    border-color: ${({ theme }) => theme.purple};
-    color: ${({ theme }) => theme.purple};
-  }
-
-  &:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.purple};
-  }
-
-  input {
-    display: none;
-  }
-
-  @media (max-width: 480px) {
-    height: 120px;
-  }
-`;
-
-export const SubmitButton = styled.button`
-  width: 100%;
-  height: 48px;
-  background: ${({ theme }) => theme.purple};
-  color: ${({ theme }) => theme.white};
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  font-family: ${({ theme }) => theme.poppinsFont};
-
-  &:hover {
-    opacity: 0.9;
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  @media (max-width: 480px) {
-    height: 44px;
-    font-size: 15px;
-  }
-`;
-
-export const ErrorMessage = styled.span`
-  font-size: 12px;
-  color: ${({ theme }) => theme.red};
-  font-weight: 500;
-
-  @media (max-width: 480px) {
-    font-size: 11px;
-  }
-`;
-
-export const EditButton = styled.button`
-  background: ${({ theme }) => theme.purple};
-  border: none;
-  border-radius: 6px;
-  padding: 6px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: ${({ theme }) => theme.white};
-  transition: opacity 0.2s;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  @media (max-width: 480px) {
-    padding: 5px 10px;
-    font-size: 13px;
+  label {
+    font-size: 14px;
+    color: ${({ theme }) => get(theme, "textSecondary", "#BBBBBB")};
+    cursor: pointer;
   }
 `;

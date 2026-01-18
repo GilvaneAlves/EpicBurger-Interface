@@ -40,14 +40,7 @@ export function EditProduct() {
     const product = location.state?.product;
     const navigate = useNavigate();
 
-    const {
-        register,
-        control,
-        handleSubmit,
-        setValue,
-        watch,
-        formState: { errors },
-    } = useForm({
+    const { register, control, handleSubmit, setValue, watch, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
             name: product?.name || "",
@@ -81,9 +74,7 @@ export function EditProduct() {
     }, [product, setValue]);
 
     useEffect(() => {
-        if (watchFile?.[0]) {
-            setFileName(watchFile[0].name);
-        }
+        if (watchFile?.[0]) setFileName(watchFile[0].name);
     }, [watchFile]);
 
     if (!product) return <p>Produto não encontrado</p>;
@@ -94,10 +85,7 @@ export function EditProduct() {
         formData.append("price", data.price * 100);
         formData.append("category_id", data.category.id);
         formData.append("offer", data.offer);
-
-        if (data.file?.[0]) {
-            formData.append("file", data.file[0]);
-        }
+        if (data.file?.[0]) formData.append("file", data.file[0]);
 
         await toast.promise(api.put(`/products/${product.id}`, formData), {
             pending: "Atualizando produto...",
@@ -105,9 +93,7 @@ export function EditProduct() {
             error: "Erro ao atualizar o produto.",
         });
 
-        setTimeout(() => {
-            navigate("/admin/produtos");
-        }, 2000);
+        setTimeout(() => navigate("/admin/produtos"), 2000);
     };
 
     return (
@@ -160,7 +146,10 @@ export function EditProduct() {
                     </LabelUpload>
                 </InputGroup>
 
-                <SubmitButton type="submit">Atualizar Produto</SubmitButton>
+                <SubmitButton type="submit">
+                    <Image size={20} style={{ marginRight: "8px" }} />
+                    Atualizar Produto
+                </SubmitButton>
             </Form>
         </Container>
     );

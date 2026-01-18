@@ -36,47 +36,46 @@ export function Products() {
     }
 
     function editProduct(product) {
-        // Passa o produto via state para a página de edição
         navigate(`/admin/editar-produto`, { state: { product } });
     }
 
     return (
         <Container>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="products table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Nome</TableCell>
-                            <TableCell align="center">Preço</TableCell>
-                            <TableCell align="center">Produto em Oferta</TableCell>
-                            <TableCell align="center">Imagem do Produto</TableCell>
-                            <TableCell align="center">Editar Produto</TableCell>
-                        </TableRow>
-                    </TableHead>
 
-                    <TableBody>
-                        {products.map((product) => (
-                            <TableRow key={product.id}>
-                                <TableCell component="th" scope="row">
-                                    {typeof product.name === "object" ? product.name.name : product.name}
-                                </TableCell>
-                                <TableCell align="center">
-                                    {formatPrice(typeof product.price === "object" ? product.price.value : product.price)}
-                                </TableCell>
-                                <TableCell align="center">{isOffer(product.offer)}</TableCell>
-                                <TableCell align="center">
-                                    <ProductImage src={product.url} alt={product.name} />
-                                </TableCell>
-                                <TableCell align="center">
-                                    <EditButton onClick={() => editProduct(product)}>
-                                        <PencilIcon />
-                                    </EditButton>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <Table sx={{ minWidth: 650 }} aria-label="products table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Nome</TableCell>
+                        <TableCell align="center">Preço</TableCell>
+                        <TableCell align="center">Produto em Oferta</TableCell>
+                        <TableCell align="center">Imagem do Produto</TableCell>
+                        <TableCell align="center">Editar Produto</TableCell>
+                    </TableRow>
+                </TableHead>
+
+                <TableBody>
+                    {products.map((product) => (
+                        <TableRow key={product.id}>
+                            <TableCell component="th" scope="row">
+                                {typeof product.name === "object" ? product.name.name : product.name}
+                            </TableCell>
+                            <TableCell align="center">
+                                {formatPrice(typeof product.price === "object" ? product.price.value : product.price)}
+                            </TableCell>
+                            <TableCell align="center">{isOffer(product.offer)}</TableCell>
+                            <TableCell align="center">
+                                <ProductImage src={product.url} alt={product.name} />
+                            </TableCell>
+                            <TableCell align="center">
+                                <EditButton onClick={() => editProduct(product)}>
+                                    <PencilIcon color="black" />
+                                </EditButton>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+
         </Container>
     );
 }

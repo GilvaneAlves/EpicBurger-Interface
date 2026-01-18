@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
+const get = (theme, token, fallback) => theme[token] ?? fallback;
+
 export const Container = styled.div`
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  background: ${({ theme }) => theme.black};
+  background: ${({ theme }) => get(theme, "backgroundSecondary", "#1E1E1E")};
   padding: 24px;
-  border-radius: 8px;
-  font-family: ${({ theme }) => theme.poppinsFont};
-  color: ${({ theme }) => theme.white};
+  border-radius: 12px;
+  font-family: ${({ theme }) => get(theme, "bodyFont", "system-ui, sans-serif")};
+  color: ${({ theme }) => get(theme, "textPrimary", "#FFFFFF")};
 
   @media (max-width: 768px) {
     padding: 20px;
@@ -22,10 +24,10 @@ export const Container = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 
   @media (max-width: 480px) {
-    gap: 16px;
+    gap: 12px;
   }
 `;
 
@@ -37,20 +39,22 @@ export const InputGroup = styled.div`
   input {
     height: 44px;
     padding: 0 12px;
-    border-radius: 6px;
-    border: none;
-    background: ${({ theme }) => theme.mainBlack};
-    color: ${({ theme }) => theme.white};
+    border-radius: 10px;
+    border: 1px solid ${({ theme }) => get(theme, "textSecondary", "#BBBBBB")};
+    background: ${({ theme }) => get(theme, "backgroundSecondary", "#1E1E1E")};
+    color: ${({ theme }) => get(theme, "textPrimary", "#FFFFFF")};
     font-size: 14px;
+    transition: all 0.2s ease;
   }
 
   input::placeholder {
-    color: ${({ theme }) => theme.darkGray};
+    color: ${({ theme }) => get(theme, "textPlaceholder", "#777777")};
   }
 
   input:focus {
     outline: none;
-    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.purple};
+    border-color: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
+    box-shadow: 0 0 0 3px rgba(255,76,41,0.25);
   }
 
   @media (max-width: 480px) {
@@ -66,7 +70,7 @@ export const InputGroup = styled.div`
 export const Label = styled.label`
   font-size: 14px;
   font-weight: 500;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => get(theme, "textSecondary", "#BBBBBB")};
 
   @media (max-width: 480px) {
     font-size: 13px;
@@ -81,6 +85,7 @@ export const CheckboxGroup = styled.div`
   input {
     width: 18px;
     height: 18px;
+    accent-color: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
     cursor: pointer;
   }
 
@@ -96,10 +101,10 @@ export const CheckboxGroup = styled.div`
 
 export const LabelUpload = styled.label`
   height: 140px;
-  border: 2px dashed ${({ theme }) => theme.lightGray};
-  border-radius: 8px;
-  background: ${({ theme }) => theme.mainBlack};
-  color: ${({ theme }) => theme.lightGray};
+  border: 2px dashed ${({ theme }) => get(theme, "textSecondary", "#BBBBBB")};
+  border-radius: 12px;
+  background: ${({ theme }) => get(theme, "backgroundSecondary", "#1E1E1E")};
+  color: ${({ theme }) => get(theme, "textSecondary", "#BBBBBB")};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,11 +112,12 @@ export const LabelUpload = styled.label`
   gap: 8px;
   cursor: pointer;
   text-align: center;
-  transition: border-color 0.2s, color 0.2s;
+  transition: all 0.2s ease;
+  position: relative;
 
   &:hover {
-    border-color: ${({ theme }) => theme.purple};
-    color: ${({ theme }) => theme.purple};
+    border-color: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
+    color: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
   }
 
   input {
@@ -126,15 +132,15 @@ export const LabelUpload = styled.label`
 export const SubmitButton = styled.button`
   width: 100%;
   height: 48px;
-  background: ${({ theme }) => theme.purple};
-  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
+  color: ${({ theme }) => get(theme, "textPrimary", "#FFFFFF")};
   font-size: 16px;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  font-family: ${({ theme }) => theme.poppinsFont};
-  transition: opacity 0.2s;
+  font-family: ${({ theme }) => get(theme, "headingFont", "Poppins, sans-serif")};
+  transition: all 0.2s ease;
 
   &:hover {
     opacity: 0.9;
@@ -153,7 +159,7 @@ export const SubmitButton = styled.button`
 
 export const ErrorMessage = styled.span`
   font-size: 12px;
-  color: ${({ theme }) => theme.red};
+  color: #EF4444;
   font-weight: 500;
 
   @media (max-width: 480px) {

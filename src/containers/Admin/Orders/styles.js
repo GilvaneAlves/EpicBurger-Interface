@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import Select from 'react-select';
-import { standardTheme } from '../../../styles/themes/standard';
+
+const get = (theme, token, fallback) => theme[token] ?? fallback;
 
 export const ProductImage = styled.img`
   width: 100px;
   padding: 12px;
-  border-radius: 16px;
+  border-radius: 10px;
 
   @media (max-width: 768px) {
     width: 80px;
@@ -22,12 +23,21 @@ export const SelectStatus = styled(Select)`
   width: 240px;
 
   .react-select__control {
-    background-color: ${standardTheme.mainBlack};
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    background-color: ${({ theme }) => get(theme, "backgroundSecondary", "#1E1E1E")};
+    border-radius: 10px;
+    border: 1px solid ${({ theme }) => get(theme, "textSecondary", "#BBBBBB")};
     min-height: 36px;
     font-size: 14px;
-    color: ${standardTheme.white};
+    color: ${({ theme }) => get(theme, "textPrimary", "#FFFFFF")};
+  }
+
+  .react-select__single-value {
+    color: ${({ theme }) => get(theme, "textPrimary", "#FFFFFF")};
+  }
+
+  .react-select__menu {
+    background-color: ${({ theme }) => get(theme, "backgroundSecondary", "#1E1E1E")};
+    color: ${({ theme }) => get(theme, "textPrimary", "#FFFFFF")};
   }
 
   @media (max-width: 768px) { width: 180px; }
@@ -55,15 +65,19 @@ export const Filter = styled.div`
 export const FilterOptions = styled.button`
   background: none;
   border: none;
-  color: ${({ $isactiveStatus }) => $isactiveStatus ? standardTheme.purple : '#5a5656'};
+  color: ${({ $isactiveStatus, theme }) =>
+    $isactiveStatus ? get(theme, "primaryRed", "#FF4C29") : '#BBBBBB'};
   font-size: 16px;
   line-height: 19px;
   padding-bottom: 4px;
   cursor: pointer;
-  border-bottom: ${({ $isactiveStatus }) => $isactiveStatus ? `2px solid ${standardTheme.purple}` : '2px solid transparent'};
+  border-bottom: ${({ $isactiveStatus, theme }) =>
+    $isactiveStatus ? `2px solid ${get(theme, "primaryRed", "#FF4C29")}` : '2px solid transparent'};
   transition: color 0.2s, border-bottom 0.2s;
 
-  &:hover { color: ${standardTheme.purple}; }
+  &:hover {
+    color: ${({ theme }) => get(theme, "primaryRed", "#FF4C29")};
+  }
 
   @media (max-width: 768px) {
     font-size: 14px;

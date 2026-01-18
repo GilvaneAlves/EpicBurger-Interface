@@ -1,15 +1,17 @@
+import { useNavigate, useLocation } from "react-router-dom";
+import { useUser } from "../../hooks/UserContext";
+import { ShoppingCartIcon, UserCircleIcon } from "@phosphor-icons/react";
+import LogoImage from "../../assets/logo.png";
+
 import {
     Container,
+    LogoContainer,
     Navigation,
     HeaderLink,
     Options,
     Profile,
     LinkContainer
 } from "./styles";
-
-import { useNavigate, useLocation } from "react-router-dom";
-import { useUser } from "../../hooks/UserContext";
-import { ShoppingCartIcon, UserCircleIcon } from "@phosphor-icons/react";
 
 export function Header() {
     const navigate = useNavigate();
@@ -23,22 +25,26 @@ export function Header() {
 
     return (
         <Container>
-            {/* Navegação */}
+            {/* Logo + nome */}
+            <LogoContainer to="/">
+                <img src={LogoImage} alt="Épic Burger" />
+                <h1>Épic Burger</h1>
+            </LogoContainer>
+
+            {/* Menu central */}
             <Navigation>
                 <div>
                     <HeaderLink to="/" $isActive={pathname === "/"}>
                         Home
                     </HeaderLink>
-
                     <hr />
-
                     <HeaderLink to="/cardapio" $isActive={pathname === "/cardapio"}>
                         Cardápio
                     </HeaderLink>
                 </div>
             </Navigation>
 
-            {/* Opções */}
+            {/* Opções à direita */}
             <Options>
                 <Profile>
                     {userInfo?.name ? (
@@ -54,9 +60,7 @@ export function Header() {
                             <HeaderLink to="/cadastro" $isActive={pathname === "/cadastro"}>
                                 Criar Conta
                             </HeaderLink>
-
                             <hr />
-
                             <HeaderLink to="/login" $isActive={pathname === "/login"}>
                                 Login
                             </HeaderLink>

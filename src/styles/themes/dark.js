@@ -1,21 +1,28 @@
 export const darkTheme = {
-    primaryRed: '#E63946',       // novos destaques
-    accentOrange: '#FF6B35',
-    hoverPurple: '#7B61FF',
+    // Cores principais
+    primaryRed: '#FF4C29',        // destaque principal (botões, CTAs)
+    accentOrange: '#FF8C42',      // destaques secundários (hover, ícones)
+    highlightYellow: '#FFD166',   // alertas ou ofertas
+    hoverPurple: '#7B61FF',       // hover sutil para elementos interativos
 
-    mainBlack: '#1F1F1F',       // fundo dark
-    black: '#363636',
-    secondBlack: '#484848',
+    // Escala de preto / cinza
+    mainBlack: '#121212',          // fundo geral
+    black: '#1E1E1E',              // containers escuros
+    secondBlack: '#2A2A2A',        // cards ou seções secundárias
 
-    darkGray: '#625e5e',
-    lightGray: '#cdcdcd',
+    darkGray: '#555555',           // texto secundário
+    lightGray: '#CCCCCC',          // textos claros sobre dark
+    placeholderGray: '#888888',    // inputs, placeholders
 
+    // Branco e variações
     white: '#FFFFFF',
-    secondWhite: '#f0f0f0',
-    darkWhite: '#f4f4f4',
+    secondWhite: '#F0F0F0',
+    darkWhite: '#F4F4F4',
 
-    green: '#32CD32',           // ofertas
+    // Verde para ofertas ou sucesso
+    successGreen: '#32CD32',
 
-    roadRageFont: '"Road Rage", sans-serif',
-    poppinsFont: '"Poppins", sans-serif',
+    // Tipografia
+    headingFont: '"Poppins", sans-serif',   // títulos e botões
+    bodyFont: '"Roboto", sans-serif',       // textos gerais
 };

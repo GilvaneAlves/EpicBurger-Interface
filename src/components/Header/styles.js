@@ -8,9 +8,33 @@ export const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 50px;
+  padding: 0 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 `;
 
+/* Logo + nome */
+export const LogoContainer = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+
+  img {
+    height: 50px;
+    width: auto;
+  }
+
+  h1 {
+    font-family: ${({ theme }) => theme.headingFont};
+    color: ${({ theme }) => theme.white};
+    font-size: 1.5rem;
+  }
+`;
+
+/* Menu central */
 export const Navigation = styled.nav`
   display: flex;
   align-items: center;
@@ -19,7 +43,7 @@ export const Navigation = styled.nav`
   div {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 2rem;
   }
 
   hr {
@@ -29,36 +53,37 @@ export const Navigation = styled.nav`
 `;
 
 export const HeaderLink = styled(Link)`
+  font-family: ${({ theme }) => theme.headingFont};
+  font-size: 1rem;
   color: ${({ $isActive, theme }) =>
-    $isActive ? theme.purple : theme.white};
-
-  border-bottom: ${({ $isActive, theme }) =>
-    $isActive ? `1px solid ${theme.purple}` : "none"};
-
+    $isActive ? theme.accentOrange : theme.white};
   text-decoration: none;
-  font-size: 18px;
-  font-family: ${({ theme }) => theme.poppinsFont};
+  border-bottom: ${({ $isActive, theme }) =>
+    $isActive ? `2px solid ${theme.accentOrange}` : "none"};
+  padding-bottom: 2px;
+  transition: all 0.3s ease;
 
   &:hover {
-    color: ${({ theme }) => theme.purple};
-    opacity: 0.7;
+    color: ${({ theme }) => theme.primaryRed};
   }
 `;
 
+/* Opções direita */
 export const Options = styled.div`
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 1.5rem;
 `;
 
+/* Perfil do usuário */
 export const Profile = styled.div`
   color: ${({ theme }) => theme.white};
-  font-family: ${({ theme }) => theme.poppinsFont};
+  font-family: ${({ theme }) => theme.bodyFont};
 
   div {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
   }
 
   p {
@@ -76,25 +101,25 @@ export const Profile = styled.div`
     border: none;
     cursor: pointer;
     font-size: 14px;
-    font-family: ${({ theme }) => theme.poppinsFont};
+    font-family: ${({ theme }) => theme.bodyFont};
 
     &:hover {
-      color: ${({ theme }) => theme.purple};
-      opacity: 0.7;
+      color: ${({ theme }) => theme.primaryRed};
     }
   }
 `;
 
+/* Container para links e carrinho */
 export const LinkContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
-  text-decoration: none;
+  gap: 0.5rem;
+  cursor: pointer;
   color: ${({ theme }) => theme.white};
-  font-family: ${({ theme }) => theme.poppinsFont};
+  font-family: ${({ theme }) => theme.bodyFont};
+  text-decoration: none;
 
   &:hover {
-    color: ${({ theme }) => theme.purple};
-    opacity: 0.7;
+    color: ${({ theme }) => theme.primaryRed};
   }
 `;
